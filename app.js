@@ -9,6 +9,7 @@ const hbs = require('hbs')
 const app = express()
 require('./models/conexion')
 
+PORT= process.env.PORT ||8000
 
 app.use(cors({ origin: 'http://localhost:3000', credentials: true  }))
 app.use(logger('dev'))
@@ -47,6 +48,8 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500)
 res.render('*')
 })
-
+app.listen(PORT, () => {
+  console.log(`El servidor se está escuchando en http://localhost:${PORT}`);
+});
 
 module.exports = app
